@@ -9,16 +9,7 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// Only use CORS for API routes in development
-const isDevelopment = process.env.NODE_ENV !== "production";
-
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-// Serve frontend build in production
-if (isDevelopment === false) {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
-}
 
 // Routes
 app.use("/api/auth", require("./routes/auth"));
