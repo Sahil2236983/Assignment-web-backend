@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/errorHandler");
+const cors = require("cors");
 
 const app = express();
 
@@ -10,6 +11,9 @@ const app = express();
 connectDB();
 
 app.use(express.json());
+
+// Enable CORS for all origins
+app.use(cors());
 
 // Routes
 app.use("/api/auth", require("./routes/auth"));
