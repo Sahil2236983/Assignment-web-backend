@@ -31,18 +31,6 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "OK", timestamp: new Date().toISOString() });
 });
 
-// SPA fallback route (serve index.html for all non-API routes in production)
-if (isDevelopment === false) {
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
-  });
-} else {
-  // 404 handler for development
-  app.use((req, res) => {
-    res.status(404).json({ success: false, message: "Route not found" });
-  });
-}
-
 // Global error handler (must be last)
 app.use(errorHandler);
 
